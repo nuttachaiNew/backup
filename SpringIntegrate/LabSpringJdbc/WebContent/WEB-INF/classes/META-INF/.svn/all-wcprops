@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/cf/nego/1.0/!svn/ver/206/main/program/NegotiationTool/src/META-INF
+END
+nego-servlet.xml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/cf/nego/1.0/!svn/ver/61/main/program/NegotiationTool/src/META-INF/nego-servlet.xml
+END
+otherApp-applicationContext.xml
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/cf/nego/1.0/!svn/ver/31/main/program/NegotiationTool/src/META-INF/otherApp-applicationContext.xml
+END
+database.properties
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/cf/nego/1.0/!svn/ver/31/main/program/NegotiationTool/src/META-INF/database.properties
+END
+nego-message.properties
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/cf/nego/1.0/!svn/ver/31/main/program/NegotiationTool/src/META-INF/nego-message.properties
+END
+otherApp-TranslationService.xml
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/cf/nego/1.0/!svn/ver/31/main/program/NegotiationTool/src/META-INF/otherApp-TranslationService.xml
+END
+nego-context.xml
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/cf/nego/1.0/!svn/ver/206/main/program/NegotiationTool/src/META-INF/nego-context.xml
+END
+nego-label.properties
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/cf/nego/1.0/!svn/ver/31/main/program/NegotiationTool/src/META-INF/nego-label.properties
+END
+hibernate.properties
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/cf/nego/1.0/!svn/ver/31/main/program/NegotiationTool/src/META-INF/hibernate.properties
+END

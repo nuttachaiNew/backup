@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.4.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.directwebremoting.org/schema/spring-dwr
+        http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
+		http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+		">
+		
+	<bean id="translationService"
+		class="com.ss.c4.p4p.security.service.impl.TranslationServiceImpl">
+		<property name="translationDao">
+			<ref bean="translationDao" />
+		</property>
+		<property name="parameterService" ref="parameterService" />
+	</bean>
+	<bean id="translationDao" class="com.ss.c4.p4p.security.dao.impl.TranslationDaoImpl">
+		<property name="hibernateTemplate">
+			<ref bean="retailHibernateTemplate" />
+		</property>
+	</bean>
+	<bean id="retailSessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="mappingResources">
+			<list>
+				<value>com/ss/c4/p4p/security/model/Translation.hbm.xml
+				</value>
+				<value>com/ss/c4/p4p/security/model/StoreGroup.hbm.xml
+				</value>
+				<value>com/ss/c4/p4p/security/model/StoreGroupDtl.hbm.xml
+				</value>
+				<value>com/ss/c4/p4p/util/param/model/ParameterDetailModel.hbm.xml
+				</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect
+				</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.use_sql_comments">false</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider
+				</prop>
+			</props>
+		</property>
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	<bean id="retailHibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="retailSessionFactory" />
+		</property>
+		<property name="maxResults">
+			<value type="int">5000</value>
+		</property>
+	</bean>
+	<bean id="parameterService"
+		class="com.ss.c4.p4p.util.param.service.impl.ParameterServiceImpl">
+		<property name="parameterDetailDao" ref="parameterDetailDao" />
+	</bean>
+	<bean id="parameterDetailDao"
+		class="com.ss.c4.p4p.util.param.dao.impl.ParameterDetailDaoImpl">
+		<property name="hibernateTemplate">
+			<ref bean="retailHibernateTemplate" />
+		</property>
+	</bean>
+</beans>

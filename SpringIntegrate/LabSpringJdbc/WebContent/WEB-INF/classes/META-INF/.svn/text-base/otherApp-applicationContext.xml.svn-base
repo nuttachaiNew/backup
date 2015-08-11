@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.4.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+		http://www.directwebremoting.org/schema/spring-dwr 
+        http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd">
+		<bean id="secureMySessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="mappingResources">
+			<list>
+				<value>com/ss/c4/p4p/security/cn/model/Application.hbm.xml
+				</value>
+				<value>com/ss/c4/p4p/security/cn/model/Country.hbm.xml
+				</value>
+				<value>com/ss/c4/p4p/security/cn/model/Function.hbm.xml
+				</value>
+				<value>com/ss/c4/p4p/security/cn/model/Profile.hbm.xml
+				</value>
+				<value>com/ss/c4/p4p/security/cn/model/User.hbm.xml
+				</value>
+				<value> com/ss/c4/p4p/security/cn/model/AdmsMenu.hbm.xml </value>
+				<value> com/ss/c4/p4p/security/cn/model/AdmMenuFunction.hbm.xml
+				</value>
+				<value> com/ss/c4/p4p/security/cn/model/AdmMenuPF.hbm.xml </value>
+				<value> com/ss/c4/p4p/security/cn/model/AdmUser.hbm.xml </value>
+				<value> com/ss/c4/p4p/security/cn/model/AdmSubMenu.hbm.xml </value>
+				<value> com/ss/c4/p4p/security/cn/model/AdmSubMenuPF.hbm.xml </value>
+				<value> com/ss/c4/p4p/security/cn/model/AdmUserMS.hbm.xml</value>
+				<value> com/ss/c4/p4p/security/cos/model/AdmUserStore.hbm.xml
+				</value>
+				<value> com/ss/c4/p4p/security/cos/model/Store.hbm.xml </value>
+				<value>com/ss/c4/p4p/util/param/model/ParameterDetailModel.hbm.xml
+				</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect"> org.hibernate.dialect.Oracle10gDialect </prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider
+				</prop>
+				<prop key="hibernate.show_sql">false</prop>
+			</props>
+		</property>
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	<bean id="cmsProfileDao" class="com.ss.c4.p4p.security.cos.dao.impl.AdmProfileDaoImpl">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	<bean id="TreeService"
+		class="com.ss.c4.p4p.security.cn.service.impl.TreeMenuServiceImpl">
+		<property name="appService" ref="applicationService" />
+		<property name="treeDao">
+			<ref bean="TreeDao" />
+		</property>
+		<property name="profileDao">
+			<ref bean="cmsProfileDao" />
+		</property>
+		<property name="menuDao">
+			<ref bean="admsMenuDao" />
+		</property>
+		<!-- dwr:remote javascript="TreeService" /-->
+	</bean>
+	<bean id="applicationService"
+		class="com.ss.c4.p4p.security.cn.service.impl.ApplicationServiceImpl">
+		<property name="applicationDao">
+			<ref bean="applicationDAO" />
+		</property>
+		<property name="functionDao">
+			<ref bean="functionDAO" />
+		</property>
+	</bean>
+	<bean id="applicationDAO" class="com.ss.c4.p4p.security.cn.dao.impl.ApplicationDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="secureMySessionFactory" />
+		</property>
+	</bean>
+	<bean id="functionDAO" class="com.ss.c4.p4p.security.cn.dao.impl.FunctionDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="secureMySessionFactory" />
+		</property>
+	</bean>
+	<bean id="TreeDao" class="com.ss.c4.p4p.security.cn.dao.impl.TreeMenuDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="secureMySessionFactory" />
+		</property>
+	</bean>
+	<bean id="securityService"
+		class="com.ss.c4.p4p.security.cn.service.impl.SecurityServiceImpl">
+		<property name="treeDao">
+			<ref bean="TreeDao" />
+		</property>
+		<property name="userService">
+			<ref bean="UserService" />
+		</property>
+		<property name="menuDao">
+			<ref bean="menuDao" />
+		</property>
+	</bean>
+	<bean
+		class="com.ss.c4.p4p.security.cos.service.impl.ParameterManagementServiceImpl"
+		id="cosParamService">
+		<property name="paramHDRDao">
+			<ref bean="cosParamHdrDao" />
+		</property>
+		<property name="paramDTLDao">
+			<ref bean="cosParamDtlDao" />
+		</property>
+	</bean>
+	<bean id="cosParamHdrDao" class="com.ss.c4.p4p.security.cos.dao.impl.ParamHDRDaoImpl">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	<bean id="cosParamDtlDao" class="com.ss.c4.p4p.security.cos.dao.impl.ParamDTLDaoImpl">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	<bean id="admsMenuDao" class="com.ss.c4.p4p.security.cn.dao.impl.AdmsMenuDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="secureMySessionFactory" />
+		</property>
+	</bean>
+	<bean id="admsMenuService"
+		class="com.ss.c4.p4p.security.cn.service.impl.AdmsMenuServiceImpl">
+		<property name="admsMenuDao">
+			<ref bean="admsMenuDao" />
+		</property>
+	</bean>
+	<bean id="UserService" class="com.ss.c4.p4p.security.cn.service.impl.UserServiceImpl">
+		<property name="userDAO">
+			<ref bean="userDAO" />
+		</property>
+	</bean>
+	<bean id="userDAO" class="com.ss.c4.p4p.security.cn.dao.impl.UserDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="secureMySessionFactory" />
+		</property>
+	</bean>
+	<bean id="countryDAO" class="com.ss.c4.p4p.security.cn.dao.impl.CountryDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="secureMySessionFactory" />
+		</property>
+	</bean>
+	<bean id="countryService"
+		class="com.ss.c4.p4p.security.cn.service.impl.CountryServiceImpl">
+		<property name="countryDao">
+			<ref bean="countryDAO" />
+		</property>
+	</bean>
+	<bean id="menuDao" class="com.ss.c4.p4p.security.cn.dao.impl.MenuDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="secureMySessionFactory" />
+		</property>
+	</bean>
+</beans>
