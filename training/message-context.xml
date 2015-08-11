@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="defaultMessage" class="com.ss.training.model.DefaultMessage" >
+	</bean>
+	 
+	 <!-- Basic Construct inject -->
+	 
+	  <bean id="constructorMessage" class="com.ss.training.model.ConstructorMessage">
+       <constructor-arg value="Message from construstor." />
+   </bean>
+	<!-- Basic Setter inject -->
+	 <bean id="setterMessage" class="com.ss.training.model.SetterMessage">
+       <property  name="message" value="Message from setter." />
+   </bean>
+    <!-- Reference injection -->
+   <bean id="below" class="com.ss.training.model.ConstructMessageRenderer">
+        <property name="message" ref="constructorMessage" />
+   </bean>
+ 
+  <bean id="set" class="com.ss.training.model.SetMessage">
+       <property name="s">
+       <set>
+       		<value>INDIA</value>
+			<value>Pakistan</value>
+			<value>USA</value>
+			
+       </set>
+       </property>
+</bean>
+<bean id="list" class="com.ss.training.model.ListMessage">
+   	<property name="list">
+		<list>
+			<value>INDIA</value>
+			<value>Pakistan</value>
+			<value>USA</value>
+			<value>USA</value>
+			<value>INDIA</value>
+		</list>
+	</property>
+</bean>
+<bean id="map" class="com.ss.training.model.MapMessage">
+	<property name="maps">
+		<map>
+			<entry key="1" value="INDIA"/>
+			<entry key="2" value="Pakistan"/>
+			<entry key="3" value="USA"/>
+			<entry key="4" value="USA"/>
+		</map>
+	</property>
+</bean>
+<bean id="property" class="com.ss.training.model.PropertyMessage">
+	<property name="props">
+	<props>
+		<prop key="one">INDIA</prop>
+		<prop key="two">Pakistan</prop>
+		<prop key="three">USA</prop>
+		<prop key="four">USA</prop>
+	</props>
+	</property>
+</bean>	
+</beans>
