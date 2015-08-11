@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.spt.domain.Employees" table="EMPLOYEES">
+		<id name="employeeID" column="EMPLOYEE_ID" type="java.lang.Integer"></id>
+		<property name="firstName" column="FIRST_NAME" type="string"/>
+		<property name="lastName" column="LAST_NAME" type="string"/>
+		<property name="email" column="EMAIL" type="string"/>
+		<property name="phoneNumber" column="PHONE_NUMBER" type="string"/>
+		<property name="hireDate" column="HIRE_DATE" type="java.util.Date"/>
+		<property name="jobID" column="JOB_ID" type="string"/>
+		<property name="salary" column="SALARY" type="java.lang.Integer"/>
+		<property name="commissionPCT" column="COMMISSION_PCT" type="java.lang.Integer"/>
+		<property name="managerID" column="MANAGER_ID" type="java.lang.Integer"/>
+		<property name="DepartmentID" column="DEPARTMENT_ID" type="java.lang.Integer"/>
+		
+	</class>
+
+</hibernate-mapping>

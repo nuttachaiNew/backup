@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.url">jdbc:derby:/home/b5576722/tool/JDBC/JDBCTrain/HR</property>
+		<property name="connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
+		<property name="dialect">org.hibernate.dialect.DerbyDialect</property>
+		<property name="connection.password">hr</property>
+		<property name="connection.username">hr</property>
+
+  		<property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+
+		<property name="current_session_context_class">thread</property>
+
+		<!-- this will show us all sql statements -->
+		<property name="hibernate.show_sql">true</property>
+				<!-- mapping files -->
+<!-- 				
+	<mapping resource="com/spt/domain/Country.hbm.xml"></mapping>
+	<mapping resource="com/spt/domain/Location.hbm.xml"></mapping> 	
+	<mapping resource="com/spt/domain/Jobs.hbm.xml"></mapping>
+	<mapping resource="com/spt/domain/Department.hbm.xml"></mapping>	
+	<mapping resource="com/spt/domain/Job_History.hbm.xml"></mapping>
+	<mapping resource="com/spt/domain/Employee.hbm.xml"></mapping>
+	<mapping resource="com/spt/domain/Region.hbm.xml"></mapping>
+	
+		
+ -->
+ 		<mapping class="com.spt.domain.Regeion"/>
+		<mapping class="com.spt.domain.Country" />
+		<mapping class="com.spt.domain.Jobs" />	
+		<mapping class="com.spt.domain.Departments" />
+		<mapping class="com.spt.domain.Location" />
+		<mapping class="com.spt.domain.Employees" />
+	
+	
+	</session-factory>
+</hibernate-configuration>

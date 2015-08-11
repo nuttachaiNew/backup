@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.spt.domain.Jobs" table="JOBS">
+		<id name="jobID" column="JOB_ID" type="string"></id>
+		<property name="jobTitle" column="JOB_TITLE" type="string"/>
+		<property name="minSalary" column="MIN_SALARY" type="java.lang.Integer"/>
+		<property name="maxSalary" column="MAX_SALARY" type="java.lang.Integer"/>
+		
+	</class>
+
+</hibernate-mapping>

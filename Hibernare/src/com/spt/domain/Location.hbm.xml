@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.spt.domain.Location" table="locations">
+		<id name="locationID" column="LOCATION_ID" type="java.lang.Integer"></id>
+		<property name="streetAddress" column="STREET_ADDRESS" type="string"/>
+		<property name="postalCode" column="POSTAL_CODE" type="string"/>
+		<property name="city" column="CITY" type="string"/>
+		<property name="stateProvince" column="STATE_PROVINCE" type="string"/>
+	<!-- 	<property name="countryID" column="COUNTRY_ID" type="string"/>
+		 -->
+		<many-to-one name="countries" class="com.spt.domain.Country" column="COUNTRY_ID" ></many-to-one>
+	</class>
+
+</hibernate-mapping>

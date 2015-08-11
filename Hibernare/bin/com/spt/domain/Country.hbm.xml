@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.spt.domain.Country" table="countries">
+		<id name="countryID" column="COUNTRY_ID" type="string"></id>
+		<property name="countryName" column="COUNTRY_NAME" type="string"/>
+<!--  		<property name="regionID" column="REGION_ID" type="java.lang.Integer"/>-->
+		
+		
+		<many-to-one name="reg" class="com.spt.domain.Regeion" column="REGION_ID" ></many-to-one>
+	
+		<set name="location" table="locations" inverse="true" lazy="false">
+      		<key column="COUNTRY_ID" not-null="true"/>
+	  		<one-to-many class="com.spt.domain.Location"/>
+   		 </set>
+
+	</class>
+
+</hibernate-mapping>

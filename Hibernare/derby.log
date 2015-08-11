@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Mon Aug 10 17:21:56 ICT 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872): instance a816c00e-014f-1721-8428-0000038efd70 
+on database directory /home/b5576722/tool/JDBC/JDBCTrain/HR  with class loader sun.misc.Launcher$AppClassLoader@40f186b8 
+Loaded from file:/home/b5576722/tool/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_79-b14
+user.dir=/home/b5576722/workspace/Hibernare
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
